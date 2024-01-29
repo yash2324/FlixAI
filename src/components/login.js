@@ -1,16 +1,20 @@
 import React, { useRef, useState } from "react";
-import { checkData } from "../utils/Validation";
+import { checkEmail } from "../utils/ValidateEmail";
+import { checkPass } from "../utils/ValidatePass";
 const Login = () => {
   const backgroundImageUrl =
     "https://assets.nflxext.com/ffe/siteui/vlv3/32c47234-8398-4a4f-a6b5-6803881d38bf/eed3a573-8db7-47ca-a2ce-b511e0350439/IN-en-20240122-popsignuptwoweeks-perspective_alpha_website_large.jpg";
 
   const [isSignIn, setIsSignIn] = useState(true);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [emailMessage, setEmailMessage] = useState(null);
+  const [passMessage, setPassMessage] = useState(null);
   const email = useRef(null);
   const password = useRef(null);
   const handleClick = () => {
-    const message = checkData(email.current.value, password.current.value);
-    setErrorMessage(message);
+    const emailMessage = checkEmail(email.current.value);
+    const passwordMessage = checkPass(password.current.value);
+    setEmailMessage(emailMessage);
+    setPassMessage(passwordMessage);
   };
   const handleSignIn = () => {
     setIsSignIn(!isSignIn);
@@ -27,7 +31,7 @@ const Login = () => {
           alt="logo"
           className="w-56 bg-gradient-to-b from-black"
         />
-        <div className="relative my-16 w-full">
+        <div className="relative my-auto w-full">
           <form
             onSubmit={(e) => e.preventDefault()}
             className="bg-black bg-opacity-60 p-8 mb-10 sm:p-12 lg:p-20 max-w-sm mx-auto flex flex-col"
@@ -46,15 +50,16 @@ const Login = () => {
               ref={email}
               type="text"
               placeholder="Email address"
-              className="border border-white/75 bg-black bg-opacity-60  rounded-sm text-white p-3 mb-4 "
+              className="border border-white/75 bg-black bg-opacity-60  rounded-sm text-white p-3  "
             />
+            <p className="text-red-500 text-sm mb-4">{emailMessage}</p>
             <input
               ref={password}
               type="password"
               placeholder="Password"
-              className="border border-white/75 bg-black bg-opacity-60 text-white p-3 mb-6 "
+              className="border border-white/75 bg-black bg-opacity-60 text-white p-3 "
             />
-            <p className="text-red-500 text-sm m-auto mb-2">{errorMessage}</p>
+            <p className="text-red-500 text-sm mb-6">{passMessage}</p>
             <button
               onClick={handleClick}
               className="bg-red-700 text-white p-3 rounded-md font-bold"
