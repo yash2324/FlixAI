@@ -13,15 +13,22 @@ const Header = () => {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
+        navigate("/browse");
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid, email, displayName }));
-        navigate("/browse");
       } else {
         dispatch(removeUser());
         navigate("/");
       }
     });
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (user) {
+      navigate("/browse");
+    }
+  }, [navigate]);
+
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {})

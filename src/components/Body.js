@@ -1,6 +1,5 @@
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import Login from "./login";
-
 import Browse from "./Browse";
 
 const Body = () => {

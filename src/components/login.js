@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { checkEmail } from "../utils/ValidateEmail";
 import { checkPass } from "../utils/ValidatePass";
 import {
@@ -8,15 +8,16 @@ import {
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { backgroundImageUrl, logoUrl } from "../utils/constants";
-
-import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../utils/userSlice";
 const Login = () => {
+  const navigate = useNavigate();
   const [isSignIn, setIsSignIn] = useState(true);
   const [emailMessage, setEmailMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const [passMessage, setPassMessage] = useState(null);
-
+  const user = useSelector((store) => store.user);
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
@@ -76,6 +77,10 @@ const Login = () => {
   const handleSignIn = () => {
     setIsSignIn(!isSignIn);
   };
+
+  if (user) {
+    navigate("/browse");
+  }
 
   return (
     <div
