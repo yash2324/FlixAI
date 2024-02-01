@@ -4,19 +4,23 @@ import { checkPass } from "../utils/ValidatePass";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { backgroundImageUrl } from "../utils/constants";
-import { useNavigate } from "react-router-dom";
-import Header from "./Header";
+import { backgroundImageUrl, logoUrl } from "../utils/constants";
+
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [emailMessage, setEmailMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const [passMessage, setPassMessage] = useState(null);
-  const navigate = useNavigate();
+
+  const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
+  const dispatch = useDispatch();
   const handleClick = () => {
     const emailMessage = checkEmail(email.current.value);
     const passwordMessage = checkPass(password.current.value);
@@ -30,9 +34,18 @@ const Login = () => {
           password.current.value
         )
           .then((userCredential) => {
-            navigate("/browse");
             const user = userCredential.user;
-            // ...
+            updateProfile(user, {
+              displayName: name.current.value,
+            })
+              .then(() => {
+                const { uid, email, displayName } = auth.currentUser;
+                dispatch(addUser({ uid, email, displayName }));
+              })
+              .catch((error) => {
+                // An error occurred
+                // ...
+              });
           })
           .catch((error) => {
             const errorCode = error.code;
@@ -49,7 +62,6 @@ const Login = () => {
             // Signed in
             const user = userCredential.user;
             setErrorMessage("");
-            navigate("/browse");
           })
           .catch((error) => {
             const errorCode = error.code;
@@ -71,7 +83,7 @@ const Login = () => {
       style={{ backgroundImage: `url('${backgroundImageUrl}')` }}
     >
       <div className="relative bg-gradient-to-br from-black min-h-screen ">
-        <Header />
+        <img src={logoUrl} alt="logo" className="w-56 " />
         <div className="relative my-auto w-full">
           <form
             onSubmit={(e) => e.preventDefault()}
@@ -82,6 +94,7 @@ const Login = () => {
             </h1>
             {!isSignIn && (
               <input
+                ref={name}
                 type="text"
                 placeholder="Full Name"
                 className="border border-white/75 bg-transparent  rounded-sm text-white p-3 mb-4 "

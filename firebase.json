@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "netflix-yg",
+    "site": "streamify-yash",
     "public": "build",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
   }
