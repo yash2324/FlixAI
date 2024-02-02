@@ -1,5 +1,5 @@
 import React from "react";
-import { logoUrl } from "../utils/constants";
+import { logoUrl, userLogo } from "../utils/constants";
 
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 
 const Header = () => {
   const user = useSelector((store) => store.user);
-  console.log("User in Header component:", user);
 
   const handleSignOut = () => {
     signOut(auth)
@@ -25,7 +24,7 @@ const Header = () => {
       {user && (
         <div className="flex flex-row p-2">
           <img
-            src="https://occ-0-3752-3647.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABfjwXqIYd3kCEU6KWsiHSHvkft8VhZg0yyD50a_pHXku4dz9VgxWwfA2ontwogStpj1NE9NJMt7sCpSKFEY2zmgqqQfcw1FMWwB9.png?r=229"
+            src={userLogo}
             alt="user"
             className="w-12 h-12 mr-10 self-center"
           />

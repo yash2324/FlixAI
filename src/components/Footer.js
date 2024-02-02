@@ -7,21 +7,18 @@ import { addUser, removeUser } from "../utils/userSlice";
 const Footer = () => {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
-  console.log("Footer");
-  console.log("User in Header component:", user);
   const navigate = useNavigate();
   const [redirected, setRedirected] = useState(false);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const { uid, email, displayName, photoURL } = user;
+        const { uid, email, displayName } = user;
         dispatch(
           addUser({
             uid: uid,
             email: email,
             displayName: displayName,
-            photoURL: photoURL,
           })
         );
         setRedirected(true);
@@ -30,6 +27,7 @@ const Footer = () => {
         navigate("/");
       }
     });
+    return () => unsubscribe();
   }, [dispatch, navigate]);
 
   useEffect(() => {
@@ -43,7 +41,7 @@ const Footer = () => {
 
   return (
     <>
-      <div>Footer</div>
+      <div></div>
     </>
   );
 };
