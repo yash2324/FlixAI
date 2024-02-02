@@ -14,3 +14,6 @@ export const options = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNGMzYzRiNzlhOGZiOTE2YmQyNzVmMDc5MTZmZGU3ZiIsInN1YiI6IjY1YmQxZDgxNzY0NmZkMDEzMGJjZTQ1OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IsrSEuEhly3f1rtA35edYMIwlf190r_tUhT5sgx89OQ",
   },
 };
+
+export const moreInfo =
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Minimalist_info_Icon.png/800px-Minimalist_info_Icon.png";
