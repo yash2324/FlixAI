@@ -1,6 +1,7 @@
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import Login from "./login";
 import Browse from "./Browse";
+import Footer from "./Footer";
 
 const Body = () => {
   const appRouter = createBrowserRouter([
