@@ -8,7 +8,11 @@ const VideoBackground = ({ id }) => {
       options
     );
     const json = await data.json();
-    console.log(json?.results);
+    const filterData = json?.results.filter(
+      (videos) => videos.type === "Trailer"
+    );
+    const trailer = filterData[0];
+    console.log(trailer);
   };
   useEffect(() => {
     getMovieVideos();
