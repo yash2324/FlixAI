@@ -19,14 +19,14 @@ const Header = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b from-black flex justify-between">
-      <img src={logoUrl} alt="Netflix" className="w-56 " />
+    <div className="bg-black h-18 bg-opacity-95 flex text-white justify-between">
+      <img src={logoUrl} alt="Netflix" className="w-36 ml-5 " />
       {user && (
         <div className="flex flex-row p-2">
           <img
             src={userLogo}
             alt="user"
-            className="w-12 h-12 mr-10 self-center"
+            className="w-10 h-10 mr-10 self-center"
           />
           <button onClick={handleSignOut} className="mt-0">
             Sign Out
