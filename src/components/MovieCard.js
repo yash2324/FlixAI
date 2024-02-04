@@ -1,7 +1,6 @@
 import React from "react";
 import { IMG_TMDB } from "../utils/constants";
 const MovieCard = ({ movie }) => {
-  console.log(movie);
   return (
     <>
       <div className="w-48 px-4">

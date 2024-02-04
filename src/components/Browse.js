@@ -4,9 +4,16 @@ import Footer from "./Footer";
 import useNowPlayingMovies from "../Hooks/useNowPlayingMovies";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
+import usePopularMovies from "../Hooks/usePopularMovies";
+import useTopRated from "../Hooks/useTopRated";
+import useUpcoming from "../Hooks/useUpcoming";
 
 const Browse = () => {
   useNowPlayingMovies();
+  usePopularMovies();
+  useTopRated();
+  useUpcoming();
+
   return (
     <>
       <Header />

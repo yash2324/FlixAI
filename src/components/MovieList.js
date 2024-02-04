@@ -6,9 +6,10 @@ const MovieList = ({ title, movies }) => {
       <h2 className="text-white text-3xl ml-5 py-2">{title}</h2>
       <div className=" flex overflow-x-scroll">
         <div className="flex ">
-          {movies?.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
+          {movies?.map(
+            (movie, index) =>
+              index !== 0 && <MovieCard key={movie.id} movie={movie} />
+          )}
         </div>
       </div>
     </div>
