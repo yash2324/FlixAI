@@ -31,10 +31,7 @@ const Header = () => {
       </Link>
       {user && (
         <div className="flex flex-row justify-between p-2">
-          <button
-            className="self-center mx-auto mr-7"
-            onClick={() => handleSearch}
-          >
+          <button className="self-center mx-auto mr-7" onClick={handleSearch}>
             GPT Search🔍
           </button>
           <img
