@@ -15,14 +15,19 @@ const Browse = () => {
   usePopularMovies();
   useTopRated();
   useUpcoming();
-  console.log(search);
+
   return (
     <>
       <Header />
       <div>
-        {search && <GPTSearch />}
-        <MainContainer />
-        <SecondaryContainer />
+        {search ? (
+          <GPTSearch />
+        ) : (
+          <>
+            <MainContainer />
+            <SecondaryContainer />
+          </>
+        )}
       </div>
       <Footer />
     </>

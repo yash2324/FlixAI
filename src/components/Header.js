@@ -1,17 +1,28 @@
 import React from "react";
-import { logoUrl, userLogo } from "../utils/constants";
+import {
+  SUPPORTED_LANGUAGES,
+  logoUrl,
+  search,
+  userLogo,
+} from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { toggleShowGPTSearch } from "../utils/GPTSlice";
-
+import { changeLanguage } from "../utils/configSlice";
+import lang from "../utils/langConstants";
 const Header = () => {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
+  const showGPTSearch = useSelector((store) => store.GPT?.showGPTSearch);
+
   const handleSearch = () => {
     dispatch(toggleShowGPTSearch());
+  };
+  const handleLanguageChange = (e) => {
+    dispatch(changeLanguage(e.target.value));
   };
 
   const handleSignOut = () => {
@@ -31,8 +42,30 @@ const Header = () => {
       </Link>
       {user && (
         <div className="flex flex-row justify-between p-2">
-          <button className="self-center mx-auto mr-7" onClick={handleSearch}>
-            GPT Search🔍
+          {showGPTSearch && (
+            <select
+              className="p-2 m-2 bg-gray-900 text-white"
+              onChange={handleLanguageChange}
+            >
+              {SUPPORTED_LANGUAGES.map((lang) => (
+                <option key={lang.identifier} value={lang.identifier}>
+                  {lang.name}
+                </option>
+              ))}
+            </select>
+          )}
+          <button
+            className="self-center mx-auto mr-7 ml-3"
+            onClick={handleSearch}
+          >
+            {!showGPTSearch ? (
+              <>
+                <p className="inline my-auto">GPT Search </p>
+                <img className="inline w-4 pb-1" src={search} alt="🔍" />
+              </>
+            ) : (
+              <p className="inline my-auto">Home </p>
+            )}
           </button>
           <img
             src={userLogo}

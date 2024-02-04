@@ -19,3 +19,12 @@ export const moreInfo =
   "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Minimalist_info_Icon.png/800px-Minimalist_info_Icon.png";
 
 export const IMG_TMDB = "https://image.tmdb.org/t/p/w500/";
+
+export const search =
+  "https://icons.veryicon.com/png/o/application/full-of-interest/search-555.png";
+
+export const SUPPORTED_LANGUAGES = [
+  { identifier: "en", name: "English" },
+  { identifier: "hindi", name: "Hindi" },
+  { identifier: "spanish", name: "Spanish" },
+];
