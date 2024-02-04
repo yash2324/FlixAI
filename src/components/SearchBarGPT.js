@@ -1,11 +1,14 @@
 import openai from "../utils/openai";
-import React from "react";
+import React, { useState } from "react";
 import lang from "../utils/langConstants";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useRef } from "react";
 import { options } from "../utils/constants";
+import { addGPTSearchList } from "../utils/GPTSlice";
 const SearchBarGPT = () => {
   const searchText = useRef(null);
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const searchMovieTMDB = async (movie) => {
     const data = await fetch(
       `https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=true&language=en-US&page=1`,
@@ -15,22 +18,35 @@ const SearchBarGPT = () => {
     return json.results;
   };
   const handleGPTSearchClick = async () => {
-    console.log(searchText.current.value);
-    const gptQuery =
-      "act as a movie reccomendation system and suggest some movies for the query : " +
-      searchText.current.value +
-      ". only give me five movies, comma separated like the example given ahead. Example : Gadar , Border , Sholay , Don, Andaz Apna Apna";
-    const completion = await openai.chat.completions.create({
-      messages: [{ role: "system", content: gptQuery }],
-      model: "gpt-3.5-turbo",
-    });
+    try {
+      setLoading(true); // Set loading state to true
 
-    console.log(completion?.choices?.[0]?.message?.content);
-    const gptMovies = completion?.choices?.[0]?.message?.content.split(", ");
-    const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie));
-    const TMDBResults = await Promise.all(promiseArray);
-    console.log(TMDBResults);
+      console.log(searchText.current.value);
+
+      const gptQuery =
+        "act as a movie reccomendation system and suggest some movies for the query : " +
+        searchText.current.value +
+        ". only give me ten movies, comma separated like the example given ahead. Example : Gadar , Border , Sholay , Don, Andaz Apna Apna, 3 idiots, knives out, grand budapest hostel, The shawshank redemption, 12th fail";
+
+      const completion = await openai.chat.completions.create({
+        messages: [{ role: "system", content: gptQuery }],
+        model: "gpt-3.5-turbo",
+      });
+
+      const gptMovies = completion?.choices?.[0]?.message?.content.split(",");
+      const promiseArray = gptMovies.map((movie) =>
+        searchMovieTMDB(movie.trim())
+      );
+      const TMDBResults = await Promise.all(promiseArray);
+      const firstElements = TMDBResults.map((subArray) => subArray[0]);
+      dispatch(addGPTSearchList(firstElements));
+    } catch (error) {
+      console.error("Error processing GPT search:", error);
+    } finally {
+      setLoading(false); // Set loading state to false, whether success or error
+    }
   };
+
   const langKey = useSelector((store) => store.config.lang);
   return (
     <div className="m-4 flex flex-col justify-center">
@@ -51,7 +67,7 @@ const SearchBarGPT = () => {
               className="bg-red-700 text-white rounded-full font-semibold px-8 py-4 hover:bg-red-600 focus:bg-red-800 focus:outline-none"
               onClick={handleGPTSearchClick}
             >
-              {lang[langKey].search}
+              {loading ? "Searching..." : lang[langKey].search}
             </button>
           </form>
         </div>

@@ -5,13 +5,19 @@ import { backgroundImageUrl } from "../utils/constants";
 
 const GPTSearch = () => {
   return (
-    <div
-      className="relative z-40 h-screen bg-black text-white"
-      style={{ backgroundImage: `url('${backgroundImageUrl}')` }}
-    >
-      <SearchBarGPT />
-      <MovieSuggestionsGPT />
-    </div>
+    <>
+      <div className="fixed -z-10 bg-black opacity-95">
+        <img
+          className="h-screen w-screen object-cover "
+          src={backgroundImageUrl}
+          alt="background"
+        />
+      </div>
+      <div className=" text-white">
+        <SearchBarGPT />
+        <MovieSuggestionsGPT />
+      </div>
+    </>
   );
 };
 
