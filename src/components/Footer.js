@@ -8,12 +8,11 @@ const Footer = () => {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const navigate = useNavigate();
-  const [redirected, setRedirected] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const { uid, email, displayName } = user;
+        const { uid, email, displayName, photoURL } = user;
         dispatch(
           addUser({
             uid: uid,
@@ -21,23 +20,16 @@ const Footer = () => {
             displayName: displayName,
           })
         );
-        setRedirected(true);
+        navigate("/browse");
       } else {
         dispatch(removeUser());
         navigate("/");
       }
     });
-    return () => unsubscribe();
-  }, [dispatch, navigate]);
 
-  useEffect(() => {
-    if (redirected && user) {
-      navigate("/browse");
-    }
-    if (user === null) {
-      navigate("/");
-    }
-  }, [redirected, user, navigate]);
+    // Unsiubscribe when component unmounts
+    return () => unsubscribe();
+  }, []);
 
   return (
     <>
