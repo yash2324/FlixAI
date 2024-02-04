@@ -17,3 +17,5 @@ export const options = {
 
 export const moreInfo =
   "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Minimalist_info_Icon.png/800px-Minimalist_info_Icon.png";
+
+export const IMG_TMDB = "https://image.tmdb.org/t/p/w500/";
