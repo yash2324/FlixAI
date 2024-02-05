@@ -11,6 +11,7 @@ import { backgroundImageUrl, logoUrl } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import Footer from "./Footer";
+
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [emailMessage, setEmailMessage] = useState(null);
@@ -105,6 +106,7 @@ const Login = () => {
                 ref={email}
                 type="text"
                 placeholder="Email address"
+                value="Yash@email.com"
                 className="border border-white/75 bg-transparent  rounded-sm text-white p-3  "
               />
               <p className="text-red-500 text-sm mb-4">{emailMessage}</p>
@@ -112,6 +114,7 @@ const Login = () => {
                 ref={password}
                 type="password"
                 placeholder="Password"
+                value="Yash@123"
                 className="border border-white/75 bg-transparent text-white p-3 "
               />
               <p className="text-red-500 text-sm mb-3">{passMessage}</p>
@@ -135,6 +138,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
