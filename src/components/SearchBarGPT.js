@@ -21,11 +21,9 @@ const SearchBarGPT = () => {
     try {
       setLoading(true); // Set loading state to true
 
-      console.log(searchText.current.value);
-
       const gptQuery =
         "act as a movie reccomendation system and suggest some movies for the query : " +
-        searchText.current.value +
+        (searchText.current?.value || "") +
         ". only give me ten movies, comma separated like the example given ahead. Example : Gadar , Border , Sholay , Don, Andaz Apna Apna, 3 idiots, knives out, grand budapest hostel, The shawshank redemption, 12th fail";
 
       const completion = await openai.chat.completions.create({
@@ -33,7 +31,9 @@ const SearchBarGPT = () => {
         model: "gpt-3.5-turbo",
       });
 
-      const gptMovies = completion?.choices?.[0]?.message?.content.split(",");
+      const gptMovies =
+        completion?.choices?.[0]?.message?.content?.split(",") || [];
+
       const promiseArray = gptMovies.map((movie) =>
         searchMovieTMDB(movie.trim())
       );
