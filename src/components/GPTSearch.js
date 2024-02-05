@@ -1,24 +1,25 @@
 import React from "react";
 import SearchBarGPT from "./SearchBarGPT";
 import MovieSuggestionsGPT from "./MovieSuggestionsGPT";
-import { backgroundImageUrl } from "../utils/constants";
+import { backgroundImageGPTUrl } from "../utils/constants";
 
 const GPTSearch = () => {
   return (
     <>
-      <body className="bg-black bg-opacity-50">
-        <div className="fixed -z-10">
+      <div className="relative bg-black min-h-screen overflow-hidden">
+        <div className="fixed inset-0 z-10 opacity-65">
           <img
-            className="h-screen w-screen object-cover"
-            src="https://wallpapers.com/images/featured/movie-9pvmdtvz4cb0xl37.jpg"
+            className="h-screen w-screen object-cover opacity-90"
+            src={backgroundImageGPTUrl}
             alt="background"
           />
+          <div className="bg-black bg-opacity-50 h-full w-full"></div>
         </div>
-        <div className="relative text-white">
+        <div className="relative z-20 text-white">
           <SearchBarGPT />
           <MovieSuggestionsGPT />
         </div>
-      </body>
+      </div>
     </>
   );
 };

@@ -29,3 +29,6 @@ export const SUPPORTED_LANGUAGES = [
 ];
 
 export const OpenAi_key = process.env.REACT_APP_OPENAI_KEY;
+
+export const backgroundImageGPTUrl =
+  "https://wallpapers.com/images/featured/movie-9pvmdtvz4cb0xl37.jpg";

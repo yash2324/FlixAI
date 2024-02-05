@@ -10,11 +10,15 @@ const GPTSlice = createSlice({
     toggleShowGPTSearch: (state) => {
       state.showGPTSearch = !state.showGPTSearch;
     },
+    falseShowGPTSearch: (state) => {
+      state.showGPTSearch = false;
+    },
     addGPTSearchList: (state, action) => {
       state.gptSearchList = action.payload;
     },
   },
 });
 
-export const { toggleShowGPTSearch, addGPTSearchList } = GPTSlice.actions;
+export const { toggleShowGPTSearch, addGPTSearchList, falseShowGPTSearch } =
+  GPTSlice.actions;
 export default GPTSlice.reducer;

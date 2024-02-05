@@ -2,21 +2,21 @@ import React from "react";
 
 const VideoTitle = ({ title, overview }) => {
   return (
-    <div className="absolute w-screen px-6 md:px-12 text-white aspect-video bg-gradient-to-r from-black pt-[15%] ">
+    <div className="mt-6 sm:mt-0 absolute w-screen px-6 md:px-12 text-white aspect-video bg-gradient-to-r from-black pt-[15%] ">
       <h1 className="text-3xl md:text-6xl font-bold">{title}</h1>
       <p className="hidden md:inline-block w-[40%] py-6 text-lg">{overview}</p>
-      <div className="flex flex-wrap gap-2 mt-4">
-        <button className="px-4 md:px-12 py-2 md:py-4 text-sm md:text-xl font-medium text-black bg-white rounded-md hover:bg-opacity-80 transition-all duration-[.2s]">
+      <div className="none md:flex md:flex-wrap gap-2 mt-4">
+        <button className="px-4 mr-2 md:mr-0 md:px-12 py-2 md:py-4 text-sm md:text-xl font-medium text-black bg-white rounded-md hover:bg-opacity-80 transition-all duration-[.2s]">
           ▶️ Play
         </button>
-        <button className="hidden md:flexpx-4 md:px-12 py-2 md:py-4 text-sm md:text-xl font-medium text-white bg-gray-500 rounded-md hover:bg-opacity-80 transition-all duration-[.2s] lg:flex items-center">
+        <button className="none md:flex px-4 md:px-12 py-2 md:py-4 text-sm md:text-xl font-medium text-white bg-gray-500 rounded-md hover:bg-opacity-80 transition-all duration-[.2s] lg:flex items-center">
           <svg
             width="24"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="ltr-4z3qvp e1svuwfo1"
+            className="hidden sm:inline ltr-4z3qvp e1svuwfo1"
             data-name="CircleI"
             aria-hidden="true"
           >
