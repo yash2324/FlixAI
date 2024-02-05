@@ -49,8 +49,8 @@ const SearchBarGPT = () => {
 
   const langKey = useSelector((store) => store.config.lang);
   return (
-    <div className="m-4 flex flex-col justify-center">
-      <div className="relative  p-12 w-full sm:max-w-2xl sm:mx-auto">
+    <div className="m-4 pt-24 sm:pt-0 flex flex-col justify-center">
+      <div className="relative p-12 w-full sm:max-w-2xl sm:mx-auto">
         <div className="overflow-hidden z-0 rounded-full relative p-3">
           <form
             role="form"
@@ -61,10 +61,10 @@ const SearchBarGPT = () => {
               ref={searchText}
               type="text"
               placeholder={lang[langKey].gptSearchPlaceholder}
-              className="rounded-full flex-1 px-6 py-4 text-gray-700 focus:outline-none"
+              className="rounded-full w-2/3 mf:w-auto flex-1 px-6 py-4 text-gray-700 focus:outline-none"
             />
             <button
-              className="bg-red-700 text-white rounded-full font-semibold px-8 py-4 hover:bg-red-600 focus:bg-red-800 focus:outline-none"
+              className="bg-red-700 text-white text-center rounded-full font-semibold px-4 sm:px-8 py-4 hover:bg-red-600 focus:bg-red-800 focus:outline-none"
               onClick={handleGPTSearchClick}
             >
               {loading ? "Searching..." : lang[langKey].search}

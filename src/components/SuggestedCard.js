@@ -8,14 +8,14 @@ const MovieCard = ({ movie }) => {
         <img
           alt="movie poster"
           src={IMG_TMDB + movie.poster_path}
-          className="w-1/5 h-full object-cover mr-4"
+          className="w-1/3 md:w-1/5 h-full object-cover mr-4"
         />
         <div>
           <h2 className="text-white text-3xl mb-2">{movie.original_title}</h2>
           <h2 className="text-gray-400 text-xl mb-2">{movie.release_date}</h2>
           <p className="text-white text-xl">{movie.overview}</p>
-          <div className="flex flex-wrap gap-2 mt-4">
-            <button className="px-4 md:px-12 py-2 md:py-4 text-sm md:text-xl font-medium text-black bg-white rounded-md hover:bg-opacity-80 transition-all duration-[.2s]">
+          <div className="flex flex-wrap items-center gap-2 mt-4">
+            <button className=" px-4 md:px-12 py-2 md:py-4 text-sm md:text-xl font-medium text-black bg-white rounded-md hover:bg-opacity-80 transition-all duration-[.2s]">
               ▶️ Play
             </button>
             <button className="hidden md:flexpx-4 md:px-12 py-2 md:py-4 text-sm md:text-xl font-medium text-white bg-gray-500 rounded-md hover:bg-opacity-80 transition-all duration-[.2s] lg:flex items-center">

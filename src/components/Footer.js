@@ -32,7 +32,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <div className="bg-gray-700 text-white p-4 ">
+    <div className="bg-gray-700 relative z-10 text-white p-4 ">
       <div className="flex justify-center  space-x-4">
         <a
           href="https://github.com/yash2324"

@@ -83,12 +83,12 @@ const Login = () => {
         className="bg-cover  bg-center min-h-screen overflow-x-hidden"
         style={{ backgroundImage: `url('${backgroundImageUrl}')` }}
       >
-        <div className="relative bg-gradient-to-br from-black min-h-screen ">
-          <img src={logoUrl} alt="logo" className="w-56 " />
-          <div className="relative my-auto w-full">
+        <div className="relative bg-gradient-to-b from-black sm:bg-gradient-to-br min-h-screen ">
+          <img src={logoUrl} alt="logo" className="w-56 mx-auto sm:mx-0" />
+          <div className="relative mt-[40%] sm:my-auto w-full">
             <form
               onSubmit={(e) => e.preventDefault()}
-              className="bg-black bg-opacity-50 p-8 mb-10 sm:p-12 lg:p-20 max-w-sm mx-auto flex flex-col"
+              className="bg-black bg-opacity-50  p-8 mb-10 sm:p-12 lg:p-20 max-w-sm mx-auto flex flex-col"
             >
               <h1 className="text-white text-3xl font-bold mb-6 ">
                 {isSignIn ? "Sign In" : "Sign Up"}
@@ -135,7 +135,6 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
