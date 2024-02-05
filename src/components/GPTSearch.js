@@ -6,17 +6,19 @@ import { backgroundImageUrl } from "../utils/constants";
 const GPTSearch = () => {
   return (
     <>
-      <div className="fixed -z-10 bg-black opacity-95">
-        <img
-          className="h-screen w-screen object-cover "
-          src={backgroundImageUrl}
-          alt="background"
-        />
-      </div>
-      <div className=" text-white">
-        <SearchBarGPT />
-        <MovieSuggestionsGPT />
-      </div>
+      <body className="bg-black bg-opacity-50">
+        <div className="fixed -z-10">
+          <img
+            className="h-screen w-screen object-cover"
+            src="https://wallpapers.com/images/featured/movie-9pvmdtvz4cb0xl37.jpg"
+            alt="background"
+          />
+        </div>
+        <div className="relative text-white">
+          <SearchBarGPT />
+          <MovieSuggestionsGPT />
+        </div>
+      </body>
     </>
   );
 };
