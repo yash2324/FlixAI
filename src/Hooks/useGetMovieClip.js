@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { options } from "../utils/constants";
-const useGetMovieTrailer = (id) => {
+const useGetMovieClip = (id) => {
   const [key, setKey] = useState(null);
   const getMovieVideos = async () => {
     const data = await fetch(
@@ -13,11 +13,11 @@ const useGetMovieTrailer = (id) => {
     );
     const trailer = filterData.length ? filterData[0] : json?.results[0];
     setKey(trailer?.key);
-    return key;
   };
   useEffect(() => {
     getMovieVideos();
   }, []);
+  return key;
 };
 
-export default useGetMovieTrailer;
+export default useGetMovieClip;
