@@ -1,7 +1,9 @@
 import React from "react";
 import { IMG_TMDB } from "../utils/constants";
+import { Link } from "react-router-dom";
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, id }) => {
+  console.log(movie);
   return (
     <>
       <div className="container flex mx-auto items-center bg-black mb-10 p-4">
@@ -15,9 +17,11 @@ const MovieCard = ({ movie }) => {
           <h2 className="text-gray-400 text-xl mb-2">{movie.release_date}</h2>
           <p className="text-white text-xl">{movie.overview}</p>
           <div className="flex flex-wrap items-center gap-2 mt-4">
-            <button className=" px-4 md:px-12 py-2 md:py-4 text-sm md:text-xl font-medium text-black bg-white rounded-md hover:bg-opacity-80 transition-all duration-[.2s]">
-              ▶️ Play
-            </button>
+            <Link to={"/movie/" + id}>
+              <button className=" px-4 md:px-12 py-2 md:py-4 text-sm md:text-xl font-medium text-black bg-white rounded-md hover:bg-opacity-80 transition-all duration-[.2s]">
+                ▶️ Play
+              </button>
+            </Link>
             <button className="hidden md:flexpx-4 md:px-12 py-2 md:py-4 text-sm md:text-xl font-medium text-white bg-gray-500 rounded-md hover:bg-opacity-80 transition-all duration-[.2s] lg:flex items-center">
               <svg
                 width="24"

@@ -11,7 +11,7 @@ const MovieSuggestionsGPT = () => {
         {gptSearchList && gptSearchList.length > 0 ? (
           <div>
             {gptSearchList.map((movie) => (
-              <SuggestedCard key={movie.id} movie={movie} />
+              <SuggestedCard key={movie.id} id={movie.id} movie={movie} />
             ))}
           </div>
         ) : (
