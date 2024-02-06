@@ -9,10 +9,16 @@ const useGetMovieClip = (id) => {
     );
     const json = await data.json();
     const filterData = json?.results.filter(
-      (videos) => videos.type === "Trailer" || videos
+      (videos) => videos.type === "Trailer"
     );
-    const trailer = filterData.length ? filterData[0] : json?.results[0];
+
+    const trailer = filterData.length
+      ? filterData[0]
+      : json?.results.find((video) => video.type === "Clip");
+
     setKey(trailer?.key);
+
+    console.log(json);
   };
   useEffect(() => {
     getMovieVideos();
