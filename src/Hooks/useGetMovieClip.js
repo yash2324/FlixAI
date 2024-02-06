@@ -9,7 +9,7 @@ const useGetMovieClip = (id) => {
     );
     const json = await data.json();
     const filterData = json?.results.filter(
-      (videos) => videos.type === "Trailer"
+      (videos) => videos.type === "Trailer" || videos
     );
     const trailer = filterData.length ? filterData[0] : json?.results[0];
     setKey(trailer?.key);

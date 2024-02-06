@@ -4,7 +4,7 @@ import SuggestedCard from "./SuggestedCard";
 
 const MovieSuggestionsGPT = () => {
   const { gptSearchList } = useSelector((store) => store.GPT);
-  console.log(gptSearchList);
+
   return (
     <>
       <div className="space-x-4 p-4">
