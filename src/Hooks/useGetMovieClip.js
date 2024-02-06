@@ -17,8 +17,6 @@ const useGetMovieClip = (id) => {
       : json?.results.find((video) => video.type === "Clip");
 
     setKey(trailer?.key);
-
-    console.log(json);
   };
   useEffect(() => {
     getMovieVideos();
