@@ -3,19 +3,18 @@ import { IMG_TMDB } from "../utils/constants";
 import { Link } from "react-router-dom";
 
 const MovieCard = ({ movie, id }) => {
-  console.log(movie);
   return (
     <>
       <div className="container flex mx-auto items-center bg-black mb-10 p-4">
         <img
           alt="movie poster"
-          src={IMG_TMDB + movie.poster_path}
+          src={IMG_TMDB + movie?.poster_path}
           className="w-1/3 md:w-1/5 h-full object-cover mr-4"
         />
         <div>
-          <h2 className="text-white text-3xl mb-2">{movie.original_title}</h2>
-          <h2 className="text-gray-400 text-xl mb-2">{movie.release_date}</h2>
-          <p className="text-white text-xl">{movie.overview}</p>
+          <h2 className="text-white text-3xl mb-2">{movie?.original_title}</h2>
+          <h2 className="text-gray-400 text-xl mb-2">{movie?.release_date}</h2>
+          <p className="text-white text-xl">{movie?.overview}</p>
           <div className="flex flex-wrap items-center gap-2 mt-4">
             <Link to={"/movie/" + id}>
               <button className=" px-4 md:px-12 py-2 md:py-4 text-sm md:text-xl font-medium text-black bg-white rounded-md hover:bg-opacity-80 transition-all duration-[.2s]">

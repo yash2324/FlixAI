@@ -4,14 +4,14 @@ import SuggestedCard from "./SuggestedCard";
 
 const MovieSuggestionsGPT = () => {
   const { gptSearchList } = useSelector((store) => store.GPT);
-
+  console.log(gptSearchList);
   return (
     <>
       <div className="space-x-4 p-4">
         {gptSearchList && gptSearchList.length > 0 ? (
           <div>
-            {gptSearchList.map((movie) => (
-              <SuggestedCard key={movie.id} id={movie.id} movie={movie} />
+            {gptSearchList?.map((movie, index) => (
+              <SuggestedCard key={index} id={movie?.id} movie={movie} />
             ))}
           </div>
         ) : (
