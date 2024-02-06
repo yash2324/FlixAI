@@ -8,7 +8,9 @@ const MovieList = ({ title, movies }) => {
         <div className="flex ">
           {movies?.map(
             (movie, index) =>
-              index !== 0 && <MovieCard key={movie.id} movie={movie} />
+              index !== 0 && (
+                <MovieCard key={movie.id} id={movie.id} movie={movie} />
+              )
           )}
         </div>
       </div>

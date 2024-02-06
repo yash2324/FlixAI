@@ -1,7 +1,7 @@
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import Login from "./login";
 import Browse from "./Browse";
-import Footer from "./Footer";
+import PlayMovie from "./PlayMovie";
 
 const Body = () => {
   const appRouter = createBrowserRouter([
@@ -12,6 +12,10 @@ const Body = () => {
     {
       path: "/browse",
       element: <Browse />,
+    },
+    {
+      path: "/movie/:movieId",
+      element: <PlayMovie />,
     },
   ]);
 
