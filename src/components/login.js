@@ -17,6 +17,8 @@ const Login = () => {
   const [emailMessage, setEmailMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const [passMessage, setPassMessage] = useState(null);
+  const [defaultEmail, setDefaultEmail] = useState("Yash@email.com");
+  const [defaultPassword, setDefaultPassword] = useState("Yash@123");
   const user = useSelector((store) => store.user);
   const name = useRef(null);
   const email = useRef(null);
@@ -106,7 +108,8 @@ const Login = () => {
                 ref={email}
                 type="text"
                 placeholder="Email address"
-                value="Yash@email.com"
+                value={!isSignIn ? "" : defaultEmail}
+                onChange={(e) => setDefaultEmail(e.target.value)}
                 className="border border-white/75 bg-transparent  rounded-sm text-white p-3  "
               />
               <p className="text-red-500 text-sm mb-4">{emailMessage}</p>
@@ -114,7 +117,8 @@ const Login = () => {
                 ref={password}
                 type="password"
                 placeholder="Password"
-                value="Yash@123"
+                value={!isSignIn ? "" : defaultPassword}
+                onChange={(e) => setDefaultPassword(e.target.value)}
                 className="border border-white/75 bg-transparent text-white p-3 "
               />
               <p className="text-red-500 text-sm mb-3">{passMessage}</p>
