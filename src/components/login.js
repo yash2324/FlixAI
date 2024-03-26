@@ -19,6 +19,8 @@ const Login = () => {
   const [passMessage, setPassMessage] = useState(null);
   const [defaultEmail, setDefaultEmail] = useState("Yash@email.com");
   const [defaultPassword, setDefaultPassword] = useState("Yash@123");
+  const [emailString, setEmailString] = useState("");
+  const [passString, setPassString] = useState("");
   const user = useSelector((store) => store.user);
   const name = useRef(null);
   const email = useRef(null);
@@ -108,8 +110,11 @@ const Login = () => {
                 ref={email}
                 type="text"
                 placeholder="Email address"
-                value={!isSignIn ? "" : defaultEmail}
-                onChange={(e) => setDefaultEmail(e.target.value)}
+                value={!isSignIn ? emailString : defaultEmail}
+                onChange={(e) => {
+                  setEmailString(e.target.value);
+                  setDefaultEmail(e.target.value);
+                }}
                 className="border border-white/75 bg-transparent  rounded-sm text-white p-3  "
               />
               <p className="text-red-500 text-sm mb-4">{emailMessage}</p>
@@ -117,8 +122,11 @@ const Login = () => {
                 ref={password}
                 type="password"
                 placeholder="Password"
-                value={!isSignIn ? "" : defaultPassword}
-                onChange={(e) => setDefaultPassword(e.target.value)}
+                value={!isSignIn ? passString : defaultPassword}
+                onChange={(e) => {
+                  setDefaultPassword(e.target.value);
+                  setPassString(e.target.value);
+                }}
                 className="border border-white/75 bg-transparent text-white p-3 "
               />
               <p className="text-red-500 text-sm mb-3">{passMessage}</p>
