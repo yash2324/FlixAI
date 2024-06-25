@@ -5,8 +5,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRef } from "react";
 import { options } from "../utils/constants";
 import { addGPTSearchList } from "../utils/GPTSlice";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { OpenAi_key } from "../utils/constants";
+
 const SearchBarGPT = () => {
   const searchText = useRef(null);
+  const genAI = new GoogleGenerativeAI(OpenAi_key);
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const searchMovieTMDB = async (movie) => {
@@ -26,14 +31,11 @@ const SearchBarGPT = () => {
         (searchText.current?.value || "") +
         ". only give me ten movies, comma separated like the example given ahead. Example : Gadar , Border , Sholay , Don, Andaz Apna Apna, 3 idiots, knives out, grand budapest hostel, The shawshank redemption, 12th fail";
 
-      const completion = await openai.chat.completions.create({
-        messages: [{ role: "system", content: gptQuery }],
-        model: "gpt-3.5-turbo",
-      });
-
+      const completion = await model.generateContent(gptQuery);
       const gptMovies =
-        completion?.choices?.[0]?.message?.content?.split(",") || [];
-
+        completion?.response?.candidates?.[0]?.content?.parts?.[0]?.text?.split(
+          ","
+        ) || [];
       const promiseArray = gptMovies.map((movie) =>
         searchMovieTMDB(movie.trim())
       );
