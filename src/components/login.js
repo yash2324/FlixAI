@@ -17,8 +17,8 @@ const Login = () => {
   const [emailMessage, setEmailMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const [passMessage, setPassMessage] = useState(null);
-  const [defaultEmail, setDefaultEmail] = useState("Yash@email.com");
-  const [defaultPassword, setDefaultPassword] = useState("Yash@123");
+  const [defaultEmail, setDefaultEmail] = useState("user@email.com");
+  const [defaultPassword, setDefaultPassword] = useState("User@123");
   const [emailString, setEmailString] = useState("");
   const [passString, setPassString] = useState("");
   const user = useSelector((store) => store.user);

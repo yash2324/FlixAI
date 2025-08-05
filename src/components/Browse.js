@@ -29,7 +29,7 @@ const Browse = () => {
           </>
         )}
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
